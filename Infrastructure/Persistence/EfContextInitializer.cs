@@ -1,4 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Domain.Entities.Projects;
+using Domain.Entities.Users;
+using Domain.Shared.Enums;
+using Domain.Shared.Helpers;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace Infrastructure.Persistence;
@@ -45,8 +49,38 @@ public class EfContextInitializer
         }
     }
 
-    private Task TrySeedAsync()
+    private async Task TrySeedAsync()
     {
-        return Task.CompletedTask;
+        if (_context.Database.IsSqlServer())
+        {
+            if (!_context.Users.Any())
+            {
+                var user = new User
+                {
+                    Id = Guid.NewGuid(),
+                    Username = "admin",
+                    HashedPassword = StringHelper.HashString("admin@123"),
+                    Role = UserRole.ProjectManager,
+                    StaffCode = "PM0001",
+                    FirstName = "Minh",
+                    LastName = "Tran",
+                    DateOfBirth = new DateTime(2000, 4, 24),
+                    Gender = Gender.Male
+                };
+
+                _context.Users.Add(user);
+
+                var project = new Project
+                {
+                    Id = Guid.NewGuid(),
+                    Name = "ProMag",
+                    Description = "A minimal project management system",
+                };
+
+                _context.Projects.Add(project);
+
+                await _context.SaveChangesAsync();
+            }
+        }
     }
 }
