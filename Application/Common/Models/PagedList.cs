@@ -8,7 +8,10 @@ public class PagedList<T>
         TotalRecord = source.Count();
         TotalPage = TotalRecord / PageSize;
 
-        if (TotalRecord % PageSize > 0) ++TotalPage;
+        if (TotalRecord % PageSize > 0)
+        {
+            ++TotalPage;
+        }
 
         PageIndex = pageIndex > TotalPage ? TotalPage : pageIndex;
 

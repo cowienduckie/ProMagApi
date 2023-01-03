@@ -60,7 +60,7 @@ public static class JwtHelper
                 },
                 out var validatedToken);
 
-            var jwtToken = (JwtSecurityToken) validatedToken;
+            var jwtToken = (JwtSecurityToken)validatedToken;
 
             var userId = Guid.Parse(jwtToken.Claims
                 .First(c => c.Type == JwtSettings.IdTokenClaimName)

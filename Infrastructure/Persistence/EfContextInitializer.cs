@@ -74,7 +74,7 @@ public class EfContextInitializer
                 {
                     Id = Guid.NewGuid(),
                     Name = "ProMag",
-                    Description = "A minimal project management system",
+                    Description = "A minimal project management system"
                 };
 
                 _context.Projects.Add(project);

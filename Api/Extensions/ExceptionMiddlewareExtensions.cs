@@ -1,4 +1,3 @@
-
 using System.Net;
 using API.Models;
 using Domain.Shared.Constants;
@@ -22,7 +21,7 @@ public static class ExceptionMiddlewareExtensions
                 {
                     logger.LogError($"Something went wrong: {contextFeature.Error}");
 
-                    await context.Response.WriteAsync(new ErrorDetails()
+                    await context.Response.WriteAsync(new ErrorDetails
                     {
                         StatusCode = context.Response.StatusCode,
                         Message = Messages.InternalServerError
