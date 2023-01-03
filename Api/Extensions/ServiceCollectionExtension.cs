@@ -30,8 +30,7 @@ public static class ServiceCollectionExtension
                 builder => builder
                     .AllowAnyOrigin()
                     .AllowAnyMethod()
-                    .AllowAnyHeader()
-                    .AllowCredentials());
+                    .AllowAnyHeader());
         });
 
         return services;
