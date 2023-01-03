@@ -1,4 +1,5 @@
 ﻿using Application.Common.Models;
+using AutoMapper;
 using Domain.Entities.Users;
 using Infrastructure.Persistence.Interfaces;
 
@@ -6,7 +7,7 @@ namespace Application.Services.Implementations;
 
 public class UserService : ServiceBase, IUserService
 {
-    public UserService(IUnitOfWork unitOfWork) : base(unitOfWork)
+    public UserService(IUnitOfWork unitOfWork, IMapper mapper) : base(unitOfWork, mapper)
     {
     }
 
@@ -21,6 +22,6 @@ public class UserService : ServiceBase, IUserService
             return null;
         }
 
-        return new UserInternalModel(user);
+        return Mapper.Map<UserInternalModel>(user);
     }
 }
