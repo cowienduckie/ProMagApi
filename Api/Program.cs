@@ -21,6 +21,10 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+var logger = app.Services.GetRequiredService<ILogger>();
+
+app.ConfigureExceptionHandler(logger);
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
