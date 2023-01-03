@@ -1,5 +1,8 @@
 ﻿using System.Reflection;
+using Domain.Entities.Projects;
 using Domain.Entities.Users;
+using Domain.Entities.WorkColumns;
+using Domain.Entities.WorkItems;
 using Infrastructure.Persistence.Interceptors;
 using Infrastructure.Persistence.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +22,9 @@ public class EfContext : DbContext, IEfContext
     }
 
     public virtual DbSet<User> Users => Set<User>();
+    public virtual DbSet<Project> Projects => Set<Project>();
+    public virtual DbSet<WorkColumn> WorkColumns => Set<WorkColumn>();
+    public virtual DbSet<WorkItem> WorkItems => Set<WorkItem>();
 
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {
