@@ -9,4 +9,5 @@ public interface IAsyncRepository<T> where T : class
     Task<bool> DeleteAsync(T entity);
     Task<T?> GetAsync(Expression<Func<T, bool>>? predicate = null, CancellationToken cancellationToken = default);
     Task<List<T>> ListAsync(Expression<Func<T, bool>>? predicate = null, CancellationToken cancellationToken = default);
+    IQueryable<T> AsQueryable();
 }
