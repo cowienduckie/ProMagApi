@@ -1,4 +1,5 @@
 using API.Extensions;
+using API.Hubs;
 using API.Middlewares;
 using Application;
 using Infrastructure;
@@ -45,6 +46,8 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.UseCors("CorsPolicy");
+
+app.MapHub<ProjectHub>("/project-hub");
 
 app.UseMiddleware<JwtMiddleware>();
 

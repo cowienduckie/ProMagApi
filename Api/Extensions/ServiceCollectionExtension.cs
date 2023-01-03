@@ -21,6 +21,8 @@ public static class ServiceCollectionExtension
         services.Configure<ApiBehaviorOptions>(options =>
             options.SuppressModelStateInvalidFilter = true);
 
+        services.AddSignalR();
+
         services.AddCors(options =>
         {
             options.AddPolicy(
@@ -28,7 +30,8 @@ public static class ServiceCollectionExtension
                 builder => builder
                     .AllowAnyOrigin()
                     .AllowAnyMethod()
-                    .AllowAnyHeader());
+                    .AllowAnyHeader()
+                    .AllowCredentials());
         });
 
         return services;
