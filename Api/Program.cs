@@ -19,9 +19,11 @@ builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddLogging();
+
 var app = builder.Build();
 
-var logger = app.Services.GetRequiredService<ILogger>();
+var logger = app.Services.GetRequiredService<ILogger<Program>>();
 
 app.ConfigureExceptionHandler(logger);
 
@@ -51,7 +53,7 @@ app.UseAuthorization();
 
 app.UseCors("CorsPolicy");
 
-app.MapHub<ProjectHub>("/project-hub");
+app.MapHub<ProjectHub>("hub/project");
 
 app.UseMiddleware<JwtMiddleware>();
 
